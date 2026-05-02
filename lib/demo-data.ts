@@ -42,8 +42,7 @@ export const demoUsers: UserProfile[] = [
     active: true,
     blockedUserIds: [],
     declinedUserIds: [],
-    selfAnswers: answers(6, 5, 6, 5, 6, 4, 2, 5, 6, 5, 3, 5),
-    preferenceAnswers: answers(6, 5, 6, 5, 6, 4, 2, 5, 6, 4, 3, 5)
+    answers: answers(6, 5, 6, 5, 6, 4, 2, 5, 6, 5, 3, 5)
   },
   {
     id: "noah",
@@ -58,8 +57,7 @@ export const demoUsers: UserProfile[] = [
     active: true,
     blockedUserIds: [],
     declinedUserIds: [],
-    selfAnswers: answers(6, 4, 6, 5, 5, 4, 2, 6, 5, 4, 4, 5),
-    preferenceAnswers: answers(6, 5, 6, 5, 6, 4, 2, 5, 6, 5, 3, 5)
+    answers: answers(6, 4, 6, 5, 5, 4, 2, 6, 5, 4, 4, 5)
   },
   {
     id: "ava",
@@ -74,8 +72,7 @@ export const demoUsers: UserProfile[] = [
     active: true,
     blockedUserIds: [],
     declinedUserIds: [],
-    selfAnswers: answers(5, 6, 5, 6, 6, 5, 4, 3, 4, 2, 2, 3),
-    preferenceAnswers: answers(5, 6, 5, 6, 6, 5, 4, 3, 4, 2, 2, 3)
+    answers: answers(5, 6, 5, 6, 6, 5, 4, 3, 4, 2, 2, 3)
   },
   {
     id: "sam",
@@ -90,7 +87,6 @@ export const demoUsers: UserProfile[] = [
     active: true,
     blockedUserIds: [],
     declinedUserIds: [],
-    selfAnswers: answers(5, 4, 5, 4, 5, 5, 5, 3, 5, 3, 3, 4),
-    preferenceAnswers: answers(5, 5, 5, 4, 6, 5, 5, 3, 5, 3, 3, 4)
+    answers: answers(5, 4, 5, 4, 5, 5, 5, 3, 5, 3, 3, 4)
   }
 ];

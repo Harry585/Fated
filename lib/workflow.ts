@@ -24,8 +24,7 @@ export type RegistrationDraft = {
 };
 
 export type WorkflowState = RegistrationDraft & {
-  selfAnswers: CompatibilityAnswers;
-  preferenceAnswers: CompatibilityAnswers;
+  answers: CompatibilityAnswers;
   active: boolean;
   matchAccepted: boolean;
 };
@@ -47,8 +46,7 @@ export function createDefaultWorkflowState(): WorkflowState {
     interestedIn: ["man"],
     bio: "",
     relationshipIntent: "serious",
-    selfAnswers: createDefaultAnswers(),
-    preferenceAnswers: createDefaultAnswers(),
+    answers: createDefaultAnswers(),
     active: false,
     matchAccepted: false
   };
@@ -71,13 +69,9 @@ export function loadWorkflowState() {
     return {
       ...defaults,
       ...parsedState,
-      selfAnswers: {
-        ...defaults.selfAnswers,
-        ...parsedState.selfAnswers
-      },
-      preferenceAnswers: {
-        ...defaults.preferenceAnswers,
-        ...parsedState.preferenceAnswers
+      answers: {
+        ...defaults.answers,
+        ...parsedState.answers
       }
     } as WorkflowState;
   } catch {
@@ -104,7 +98,6 @@ export function workflowStateToProfile(state: WorkflowState): UserProfile {
     active: state.active,
     blockedUserIds: [],
     declinedUserIds: [],
-    selfAnswers: state.selfAnswers,
-    preferenceAnswers: state.preferenceAnswers
+    answers: state.answers
   };
 }

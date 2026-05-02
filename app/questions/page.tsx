@@ -26,17 +26,13 @@ export default function QuestionsPage() {
     return null;
   }
 
-  function updateAnswer(
-    answerType: "selfAnswers" | "preferenceAnswers",
-    key: keyof CompatibilityAnswers,
-    value: number
-  ) {
+  function updateAnswer(key: keyof CompatibilityAnswers, value: number) {
     setState((current) => {
       if (!current) return current;
       return {
         ...current,
-        [answerType]: {
-          ...current[answerType],
+        answers: {
+          ...current.answers,
           [key]: value
         }
       };
@@ -69,14 +65,13 @@ export default function QuestionsPage() {
         <span className="eyebrow">Compatibility questions</span>
         <h1>Choose the number that feels most true.</h1>
         <p className="lede">
-          Each topic appears once. Pick where you sit, then pick what feels right for an ideal match.
+          Each topic appears once. Your answers build the compatibility vector used for the next match round.
         </p>
       </section>
 
       <section className="question-layout">
         <CombinedQuestionBlock
-          preferenceAnswers={state.preferenceAnswers}
-          selfAnswers={state.selfAnswers}
+          answers={state.answers}
           onChange={updateAnswer}
         />
       </section>
@@ -103,21 +98,19 @@ export default function QuestionsPage() {
 }
 
 function CombinedQuestionBlock({
-  preferenceAnswers,
-  selfAnswers,
+  answers,
   onChange
 }: {
-  preferenceAnswers: CompatibilityAnswers;
-  selfAnswers: CompatibilityAnswers;
-  onChange: (answerType: "selfAnswers" | "preferenceAnswers", key: keyof CompatibilityAnswers, value: number) => void;
+  answers: CompatibilityAnswers;
+  onChange: (key: keyof CompatibilityAnswers, value: number) => void;
 }) {
   return (
     <section className="card question-card combined-question-card">
       <div>
         <span className="eyebrow">One question set</span>
-        <h2>About you and your ideal match</h2>
+        <h2>About you</h2>
         <p className="hint">
-          Tell us about yourself, and we'll help you find your match.
+          Tell us where you sit on each topic. Larger mismatches on important questions count more heavily.
         </p>
       </div>
 
@@ -132,14 +125,9 @@ function CombinedQuestionBlock({
           </div>
           <div className="answer-pair">
             <NumberScale
-              label="Me"
-              selectedValue={selfAnswers[question.key]}
-              onSelect={(value) => onChange("selfAnswers", question.key, value)}
-            />
-            <NumberScale
-              label="Ideal match"
-              selectedValue={preferenceAnswers[question.key]}
-              onSelect={(value) => onChange("preferenceAnswers", question.key, value)}
+              label="Your answer"
+              selectedValue={answers[question.key]}
+              onSelect={(value) => onChange(question.key, value)}
             />
           </div>
         </div>

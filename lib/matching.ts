@@ -25,32 +25,33 @@ export function canMatch(userA: UserProfile, userB: UserProfile) {
   return true;
 }
 
-export function similarity(preferences: CompatibilityAnswers, self: CompatibilityAnswers) {
-  const totalDistance = compatibilityQuestions.reduce((sum, question) => {
-    return sum + Math.abs(preferences[question.key] - self[question.key]);
+export function similarity(answersA: CompatibilityAnswers, answersB: CompatibilityAnswers) {
+  const weightedSquaredDistance = compatibilityQuestions.reduce((sum, question) => {
+    const distance = answersA[question.key] - answersB[question.key];
+    return sum + question.weight * distance ** 2;
   }, 0);
 
-  const maxDistance = compatibilityQuestions.length * maxAnswerDistance;
-  return 1 - totalDistance / maxDistance;
+  const maxWeightedSquaredDistance = compatibilityQuestions.reduce((sum, question) => {
+    return sum + question.weight * maxAnswerDistance ** 2;
+  }, 0);
+
+  return 1 - Math.sqrt(weightedSquaredDistance / maxWeightedSquaredDistance);
 }
 
 export function compatibilityScore(userA: UserProfile, userB: UserProfile) {
-  const aToB = similarity(userA.preferenceAnswers, userB.selfAnswers);
-  const bToA = similarity(userB.preferenceAnswers, userA.selfAnswers);
   const intentPenalty = userA.relationshipIntent === userB.relationshipIntent ? 0 : 0.08;
 
-  return Math.max(0, (aToB + bToA) / 2 - intentPenalty);
+  return Math.max(0, similarity(userA.answers, userB.answers) - intentPenalty);
 }
 
 export function compatibilityReasons(userA: UserProfile, userB: UserProfile) {
   return compatibilityQuestions
     .map((question) => {
-      const aDistance = Math.abs(userA.preferenceAnswers[question.key] - userB.selfAnswers[question.key]);
-      const bDistance = Math.abs(userB.preferenceAnswers[question.key] - userA.selfAnswers[question.key]);
+      const distance = userA.answers[question.key] - userB.answers[question.key];
 
       return {
         label: question.label,
-        distance: aDistance + bDistance
+        distance: question.weight * distance ** 2
       };
     })
     .sort((left, right) => left.distance - right.distance)

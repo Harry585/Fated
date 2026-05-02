@@ -15,8 +15,7 @@ export type UserProfile = {
   active: boolean;
   blockedUserIds: string[];
   declinedUserIds: string[];
-  selfAnswers: CompatibilityAnswers;
-  preferenceAnswers: CompatibilityAnswers;
+  answers: CompatibilityAnswers;
 };
 
 export type CompatibilityAnswers = {
@@ -39,6 +38,7 @@ export type Question = {
   label: string;
   lowLabel: string;
   highLabel: string;
+  weight: number;
 };
 
 export type MatchCandidate = {
