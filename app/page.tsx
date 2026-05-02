@@ -126,7 +126,7 @@ export default function Home() {
       <section className="cta-band">
         <div>
           <span className="eyebrow">Ready for the next round?</span>
-          <h2>Someone is waiting to watch the sunset too.</h2>
+          <h2>Find the one you're fated for.</h2>
         </div>
         <Link className="button button-large" href="/register">
           Start registration
