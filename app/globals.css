@@ -30,8 +30,7 @@ body {
       rgba(10, 20, 45, 0.10) 0%,
       rgba(10, 20, 45, 0.04) 55%,
       rgba(10, 20, 45, 0.08) 100%
-    ),
-    url('/bg.jpg');
+    );
   background-size: cover;
   background-attachment: fixed;
   background-position: center top;
