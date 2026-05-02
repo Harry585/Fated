@@ -139,8 +139,7 @@ export default function RegisterPage() {
           <span className="eyebrow">Registration</span>
           <h1>Tell us the basics.</h1>
           <p className="lede">
-            This step is intentionally lightweight. The matching signal comes next from the compatibility
-            questions.
+            Just a few essentials so we know who to introduce you to. The deeper questions come next.
           </p>
           <div className="timeline">
             <span className="active">Profile</span>
@@ -174,7 +173,7 @@ export default function RegisterPage() {
                 })
               }
             />
-            <p className="hint">We&apos;ll send a Supabase verification link to your ANU email.</p>
+            <p className="hint">We&rsquo;ll send a verification link to your ANU email.</p>
           </div>
 
           <div className="two-column">

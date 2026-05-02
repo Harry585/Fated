@@ -6,10 +6,6 @@ export type RelationshipIntent =
   | "short_term_open_to_long"
   | "short_term";
 
-export type GroupSize = "1-on-1" | "small group" | "either";
-
-export type HangoutVibe = "chill" | "active" | "intellectual" | "mixed";
-
 export type UserProfile = {
   id: string;
   email: string;

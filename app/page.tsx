@@ -47,34 +47,34 @@ export default function Home() {
           <span className="eyebrow">How it works</span>
           <h2>Three steps to one meaningful match.</h2>
           <p className="hint">
-            Sign up with an ANU email, answer a short compatibility set, then join the next scheduled round.
+            No swiping, no endless feed. Just a thoughtful introduction when you&rsquo;re ready.
           </p>
         </div>
         <div className="step-row">
           <div className="step-card">
-            <span className="step-emoji">1</span>
+            <span className="step-number-large">1</span>
             <div>
-              <h3>Verify</h3>
+              <h3>Tell us about yourself</h3>
               <p className="small">
-                Confirm your ANU email with Supabase Auth and share the basic details needed for eligibility.
+                Share a few values, lifestyle preferences, and what you&rsquo;re looking for.
               </p>
             </div>
           </div>
           <div className="step-card">
-            <span className="step-emoji">2</span>
+            <span className="step-number-large">2</span>
             <div>
-              <h3>Answer questions</h3>
+              <h3>Opt in weekly</h3>
               <p className="small">
-                Choose where you sit on values, lifestyle, habits, and relationship intent.
+                Each week, choose whether you&rsquo;re in for the next round &mdash; no pressure either way.
               </p>
             </div>
           </div>
           <div className="step-card">
-            <span className="step-emoji">3</span>
+            <span className="step-number-large">3</span>
             <div>
-              <h3>Get your match</h3>
+              <h3>Go on a date!</h3>
               <p className="small">
-                Fated scores compatible pairs and reveals one introduction when the round runs.
+                We&rsquo;ll introduce you to one compatible match. The rest is up to you.
               </p>
             </div>
           </div>
@@ -105,55 +105,22 @@ export default function Home() {
           </div>
           <div className="match-sample-bullets">
             <div className="match-bullet">
-              <span className="match-bullet-check">✓</span>
+              <span className="match-bullet-check">&#10003;</span>
               Both value slow, intentional communication over fast texting
             </div>
             <div className="match-bullet">
-              <span className="match-bullet-check">✓</span>
-              Similar outlook on weekends — prefer low-key plans over big social events
+              <span className="match-bullet-check">&#10003;</span>
+              Similar outlook on weekends &mdash; prefer low-key plans over big social events
             </div>
             <div className="match-bullet">
-              <span className="match-bullet-check">✓</span>
+              <span className="match-bullet-check">&#10003;</span>
               Aligned on long-term relationship goals and timeline
             </div>
             <div className="match-bullet">
-              <span className="match-bullet-check">✓</span>
+              <span className="match-bullet-check">&#10003;</span>
               Complementary energy levels and need for personal space
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="section-heading">
-          <span className="eyebrow">Inside a round</span>
-          <h2>The app filters, scores, and pairs the pool.</h2>
-          <p className="hint">
-            Each round starts with eligibility checks, then ranks compatible pairs using weighted answers
-            and relationship intent. The highest scoring non-overlapping pairs are revealed.
-          </p>
-        </div>
-        <div className="feature-grid">
-          <Feature
-            number="1"
-            title="Eligibility"
-            text="Only active, verified ANU students with mutual gender interest enter the candidate pool."
-          />
-          <Feature
-            number="2"
-            title="Compatibility"
-            text="Question answers are compared with weighted Euclidean distance, so important mismatches count more."
-          />
-          <Feature
-            number="3"
-            title="Intent"
-            text="Relationship intent is part of the score, with pure long-term and pure short-term treated as incompatible."
-          />
-          <Feature
-            number="4"
-            title="Reveal"
-            text="The round chooses the strongest available pairs so each student receives at most one match."
-          />
         </div>
       </section>
 
@@ -168,17 +135,5 @@ export default function Home() {
       </section>
       </div>
     </main>
-  );
-}
-
-function Feature({ number, title, text }: { number: string; title: string; text: string }) {
-  return (
-    <div className="feature-card">
-      <span className="step-number">{number}</span>
-      <div>
-        <h3>{title}</h3>
-        <p className="small">{text}</p>
-      </div>
-    </div>
   );
 }

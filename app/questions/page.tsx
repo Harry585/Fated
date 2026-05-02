@@ -10,7 +10,6 @@ import { answerOptions, loadWorkflowState, saveWorkflowState, type WorkflowState
 export default function QuestionsPage() {
   const router = useRouter();
   const [state, setState] = useState<WorkflowState | null>(null);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     const storedState = loadWorkflowState();
@@ -65,7 +64,7 @@ export default function QuestionsPage() {
         <span className="eyebrow">Compatibility questions</span>
         <h1>Choose the number that feels most true.</h1>
         <p className="lede">
-          Each topic appears once. Your answers build the compatibility vector used for the next match round.
+          Each topic appears once. Your answers help us find the most compatible introduction for you.
         </p>
       </section>
 
@@ -76,8 +75,6 @@ export default function QuestionsPage() {
         />
       </section>
 
-      {error ? <p className="error centered">{error}</p> : null}
-
       <section className="sticky-actions">
         <Link className="button secondary" href="/register">
           Back to profile
@@ -85,10 +82,7 @@ export default function QuestionsPage() {
         <button
           className="button button-large"
           type="button"
-          onClick={() => {
-            setError("");
-            finishQuestions();
-          }}
+          onClick={finishQuestions}
         >
           Join the next round
         </button>
@@ -110,7 +104,7 @@ function CombinedQuestionBlock({
         <span className="eyebrow">One question set</span>
         <h2>About you</h2>
         <p className="hint">
-          Tell us where you sit on each topic. Larger mismatches on important questions count more heavily.
+          Tell us where you sit on each topic. Be honest &mdash; the closer your answer to your real self, the better the match.
         </p>
       </div>
 

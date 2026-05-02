@@ -76,7 +76,7 @@ export default function LoginPage() {
         <aside className="side-panel">
           <span className="eyebrow">Login</span>
           <h1>Welcome back.</h1>
-          <p className="lede">Enter your ANU email and we&apos;ll send a Supabase magic link.</p>
+          <p className="lede">Enter your ANU email and we&rsquo;ll send a magic link.</p>
         </aside>
 
         <section className="card form-card">
