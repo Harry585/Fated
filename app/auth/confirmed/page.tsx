@@ -4,8 +4,20 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { isAnuEmail } from "@/lib/matching";
+import type { Gender, RelationshipIntent } from "@/lib/types";
 import { loadWorkflowState, saveWorkflowState } from "@/lib/workflow";
 import { createClient } from "@/utils/supabase/client";
+
+type StoredProfile = {
+  email: string;
+  display_name: string;
+  age: number;
+  gender: Gender;
+  interested_in: Gender[];
+  bio: string;
+  relationship_intent: RelationshipIntent;
+  active: boolean;
+};
 
 export default function AuthConfirmedPage() {
   const router = useRouter();
@@ -21,17 +33,34 @@ export default function AuthConfirmedPage() {
 
       const email = user?.email?.trim() ?? "";
 
-      if (userError || !email || !isAnuEmail(email)) {
+      if (userError || !user || !email || !isAnuEmail(email)) {
         setError("We could not verify an ANU email session. Please try the sign-up link again.");
         return;
       }
 
       const currentState = loadWorkflowState();
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("email, display_name, age, gender, interested_in, bio, relationship_intent, active")
+        .eq("id", user.id)
+        .maybeSingle<StoredProfile>();
+
+      if (profileError) {
+        setError(profileError.message);
+        return;
+      }
+
       const nextState = {
         ...currentState,
-        email,
+        email: profile?.email ?? email,
+        displayName: profile?.display_name ?? currentState.displayName,
+        age: profile?.age ?? currentState.age,
+        gender: profile?.gender ?? currentState.gender,
+        interestedIn: profile?.interested_in ?? currentState.interestedIn,
+        bio: profile?.bio ?? currentState.bio,
+        relationshipIntent: profile?.relationship_intent ?? currentState.relationshipIntent,
         verifiedUniversityEmail: true,
-        active: false,
+        active: profile?.active ?? false,
         matchAccepted: false
       };
 

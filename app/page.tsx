@@ -85,7 +85,6 @@ export default function Home() {
         <div className="section-heading narrow">
           <span className="eyebrow">Sample match</span>
           <h2>This is what a Friday match looks like.</h2>
-          <p className="hint">Real names replaced. Everything else is exactly how it works.</p>
         </div>
         <div className="match-sample card">
           <div className="match-sample-header">

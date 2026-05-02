@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { isAnuEmail } from "@/lib/matching";
+import { registrationProfileToProfileRow, workflowStateToRegistrationProfile } from "@/lib/profile-persistence";
 import type { Gender, RelationshipIntent } from "@/lib/types";
 import {
   genderOptions,
@@ -23,6 +24,16 @@ export default function RegisterPage() {
 
   useEffect(() => {
     setState(loadWorkflowState());
+    const params = new URLSearchParams(window.location.search);
+    const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+
+    if (params.get("auth") === "callback-error") {
+      setError(hashParams.get("error_description") ?? "The email verification link is invalid or has expired. Please request a new link.");
+    }
+
+    if (params.get("auth") === "profile-save-error") {
+      setError("Your email was verified, but we could not save your profile. Please try registering again.");
+    }
   }, []);
 
   if (!state) {
@@ -94,11 +105,25 @@ export default function RegisterPage() {
     } = await supabase.auth.getUser();
     const authenticatedEmail = user?.email?.trim() ?? "";
 
-    if (isAnuEmail(authenticatedEmail) && authenticatedEmail.toLowerCase() === trimmedEmail.toLowerCase()) {
+    if (user && isAnuEmail(authenticatedEmail) && authenticatedEmail.toLowerCase() === trimmedEmail.toLowerCase()) {
       const verifiedState: WorkflowState = {
         ...nextState,
         verifiedUniversityEmail: true
       };
+      const { error: profileError } = await supabase.from("profiles").upsert(
+        registrationProfileToProfileRow(
+          user.id,
+          authenticatedEmail,
+          workflowStateToRegistrationProfile(verifiedState)
+        ),
+        { onConflict: "id" }
+      );
+
+      if (profileError) {
+        setIsSubmitting(false);
+        setError(profileError.message);
+        return;
+      }
 
       saveWorkflowState(verifiedState);
       setState(verifiedState);
@@ -110,7 +135,9 @@ export default function RegisterPage() {
     const { error: signInError } = await supabase.auth.signInWithOtp({
       email: trimmedEmail,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=/auth/confirmed`
+        data: workflowStateToRegistrationProfile(nextState),
+        emailRedirectTo: `${window.location.origin}/auth/callback?next=/auth/confirmed`,
+        shouldCreateUser: true
       }
     });
 
