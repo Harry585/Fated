@@ -1,6 +1,17 @@
 # ANU Match MVP
 
-A hackathon MVP for a no-swipe ANU dating app. Students verify an `@anu.edu.au` email, answer structured compatibility questions, and receive one scheduled match.
+A hackathon MVP for a calmer ANU dating app. Students verify an `@anu.edu.au` email, answer structured compatibility questions, and receive one scheduled match instead of swiping.
+
+## Problem
+
+Traditional dating apps can feel especially draining for university students:
+
+- People are judged by anonymous strangers through fast profile decisions.
+- Swiping can become emotionally exhausting and time-consuming.
+- Texting often turns into overthinking, performance, and strategy.
+- Quick visual judgement can crowd out more authentic connection.
+
+ANU Match reframes dating as a scheduled, university-verified introduction. The product asks what people value, matches on compatibility, and gives users control over whether contact is revealed.
 
 ## Stack
 
@@ -17,17 +28,25 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open `http://127.0.0.1:3000`.
 
 ## MVP Flow
 
-1. Verify an ANU email address.
-2. Fill in profile, attraction, relationship intent, and questionnaire answers.
-3. Join the next matching round.
-4. Run the demo matching round.
-5. Review the generated match and opt in to connect.
+1. Visit the landing page and click the registration call-to-action.
+2. Enter basic profile details with an `@anu.edu.au` email.
+3. Answer each compatibility topic using explicit 1-7 choices for both yourself and your ideal match.
+4. Join the next matching round.
+5. Run the demo matching round.
+6. Review the generated match and opt in to connect.
 
-The current UI includes a browser demo using seeded ANU users. The production path should wire Supabase Auth to the same profile and matching concepts.
+The current UI uses browser local storage plus seeded ANU users for the hackathon demo. The production path should wire Supabase Auth to the same profile and matching concepts.
+
+## Routes
+
+- `/`: landing page.
+- `/register`: basic registration details.
+- `/questions`: one compatibility question series with self and ideal-match answers.
+- `/match`: demo round and match reveal.
 
 ## Matching Algorithm
 
@@ -51,9 +70,19 @@ SUPABASE_SERVICE_ROLE_KEY=
 RESEND_API_KEY=
 ```
 
+## Vercel Deployment
+
+The project includes `vercel.json` with Next.js build settings. To deploy:
+
+1. Push the repository to GitHub.
+2. Import it in Vercel.
+3. Use Node 24. The repo includes `.node-version`, `.nvmrc`, and `package.json` engines.
+4. Add Supabase/Resend environment variables when you wire live auth and email.
+5. Deploy with the default Vercel Next.js settings.
+
 ## Hackathon Demo Notes
 
-- Use the manual “Run demo match round” button for judging.
+- Use the manual "Run this week's match" button for judging.
 - Seeded users make the match reveal work immediately.
 - In production, move the matching runner behind a service-role API route or cron job.
 - Contact details should only unlock after both people opt in.
