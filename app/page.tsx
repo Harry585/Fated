@@ -24,8 +24,8 @@ export default function Home() {
         <div className="landing-hero-copy">
           <h1>date without swiping</h1>
           <p className="lede">
-            Fated helps ANU students make one thoughtful introduction at a time, using values,
-            lifestyle, and relationship intent instead of an endless queue of profiles.
+            Fated helps ANU students make one thoughtful introduction at a time, matching you based on 
+            your values and personality with someone you can deeply connect with.
           </p>
           <div className="hero-actions">
             <Link className="button button-large" href="/register">
