@@ -1488,7 +1488,7 @@ export const demoUsers: UserProfile[] = [
     id: "casey-seed-070",
     email: "casey-seed-070@anu.edu.au",
     verifiedUniversityEmail: true,
-    displayName: "Casey69",
+    displayName: "Reese",
     age: 21,
     gender: "man",
     interestedIn: ["man", "non_binary"],
@@ -1503,7 +1503,7 @@ export const demoUsers: UserProfile[] = [
     id: "casey-seed-071",
     email: "casey-seed-071@anu.edu.au",
     verifiedUniversityEmail: true,
-    displayName: "Casey70",
+    displayName: "Morgan",
     age: 18,
     gender: "non_binary",
     interestedIn: ["man", "non_binary"],
@@ -1518,7 +1518,7 @@ export const demoUsers: UserProfile[] = [
     id: "casey-seed-072",
     email: "casey-seed-072@anu.edu.au",
     verifiedUniversityEmail: true,
-    displayName: "Casey71",
+    displayName: "Dakota",
     age: 25,
     gender: "woman",
     interestedIn: ["man", "woman"],
@@ -1853,7 +1853,7 @@ export const demoUsers: UserProfile[] = [
     id: "nova1-seed-091",
     email: "nova1-seed-091@anu.edu.au",
     verifiedUniversityEmail: true,
-    displayName: "Nova1",
+    displayName: "Nova",
     age: 26,
     gender: "non_binary",
     interestedIn: [
@@ -1871,7 +1871,7 @@ export const demoUsers: UserProfile[] = [
     id: "nova2-seed-092",
     email: "nova2-seed-092@anu.edu.au",
     verifiedUniversityEmail: true,
-    displayName: "Nova2",
+    displayName: "Neve",
     age: 27,
     gender: "man",
     interestedIn: [
@@ -2031,7 +2031,7 @@ export const demoUsers: UserProfile[] = [
     id: "winslow2-seed-101",
     email: "winslow2-seed-101@anu.edu.au",
     verifiedUniversityEmail: true,
-    displayName: "Winslow2",
+    displayName: "Weston",
     age: 26,
     gender: "man",
     interestedIn: [
@@ -2245,7 +2245,7 @@ export const demoUsers: UserProfile[] = [
     id: "nico3-seed-113",
     email: "nico3-seed-113@anu.edu.au",
     verifiedUniversityEmail: true,
-    displayName: "Nico3",
+    displayName: "Noel",
     age: 18,
     gender: "man",
     interestedIn: [
@@ -2298,7 +2298,7 @@ export const demoUsers: UserProfile[] = [
     id: "oona2-seed-116",
     email: "oona2-seed-116@anu.edu.au",
     verifiedUniversityEmail: true,
-    displayName: "Oona2",
+    displayName: "Aisling",
     age: 21,
     gender: "non_binary",
     interestedIn: [
@@ -2316,7 +2316,7 @@ export const demoUsers: UserProfile[] = [
     id: "oakley2-seed-117",
     email: "oakley2-seed-117@anu.edu.au",
     verifiedUniversityEmail: true,
-    displayName: "Oakley2",
+    displayName: "Orion",
     age: 22,
     gender: "man",
     interestedIn: [
@@ -2388,7 +2388,7 @@ export const demoUsers: UserProfile[] = [
     id: "omar2-seed-121",
     email: "omar2-seed-121@anu.edu.au",
     verifiedUniversityEmail: true,
-    displayName: "Omar2",
+    displayName: "Owen",
     age: 26,
     gender: "woman",
     interestedIn: [
@@ -2405,7 +2405,7 @@ export const demoUsers: UserProfile[] = [
     id: "riven49-seed-122",
     email: "riven49-seed-122@anu.edu.au",
     verifiedUniversityEmail: true,
-    displayName: "Riven49",
+    displayName: "River",
     age: 27,
     gender: "non_binary",
     interestedIn: [

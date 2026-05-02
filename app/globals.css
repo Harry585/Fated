@@ -675,6 +675,35 @@ p {
   padding: clamp(24px, 4vw, 38px);
 }
 
+/* ── About ── */
+
+.about-layout {
+  max-width: 680px;
+  padding-top: 48px;
+}
+
+.about-header {
+  margin-bottom: 42px;
+}
+
+.about-body {
+  display: grid;
+  gap: 24px;
+}
+
+.about-body p {
+  font-size: 1.12rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
 /* ── Forms ── */
 
 .form-layout,

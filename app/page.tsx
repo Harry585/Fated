@@ -12,6 +12,9 @@ export default function Home() {
             <a className="nav-link" href="#how-it-works">
               How it works
             </a>
+            <Link className="nav-link" href="/about">
+              About
+            </Link>
             <Link className="nav-link" href="/login">
               Login
             </Link>
