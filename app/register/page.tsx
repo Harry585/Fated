@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { bypassSupabaseAuth } from "@/lib/auth-bypass";
 import { isAnuEmail } from "@/lib/matching";
 import { registrationProfileToProfileRow, workflowStateToRegistrationProfile } from "@/lib/profile-persistence";
 import type { Gender, RelationshipIntent } from "@/lib/types";
@@ -98,6 +99,19 @@ export default function RegisterPage() {
     setIsSubmitting(true);
     setError("");
     setStatus("");
+
+    if (bypassSupabaseAuth) {
+      const verifiedState: WorkflowState = {
+        ...nextState,
+        verifiedUniversityEmail: true
+      };
+
+      saveWorkflowState(verifiedState);
+      setState(verifiedState);
+      setIsSubmitting(false);
+      router.push("/questions");
+      return;
+    }
 
     const supabase = createClient();
     const {
@@ -200,7 +214,11 @@ export default function RegisterPage() {
                 })
               }
             />
-            <p className="hint">We&rsquo;ll send a verification link to your ANU email.</p>
+            <p className="hint">
+              {bypassSupabaseAuth
+                ? "MVP auth bypass is on, so this email is accepted without a Supabase verification link."
+                : "We\u2019ll send a verification link to your ANU email."}
+            </p>
           </div>
 
           <div className="two-column">
@@ -282,7 +300,13 @@ export default function RegisterPage() {
               Login
             </Link>
             <button className="button" disabled={isSubmitting} type="button" onClick={continueToQuestions}>
-              {isSubmitting ? "Sending link..." : "Send verification link"}
+              {isSubmitting
+                ? bypassSupabaseAuth
+                  ? "Continuing..."
+                  : "Sending link..."
+                : bypassSupabaseAuth
+                  ? "Continue to questions"
+                  : "Send verification link"}
             </button>
           </div>
         </section>

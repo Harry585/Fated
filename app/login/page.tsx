@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { bypassSupabaseAuth } from "@/lib/auth-bypass";
 import { isAnuEmail } from "@/lib/matching";
 import { loadWorkflowState, saveWorkflowState, type WorkflowState } from "@/lib/workflow";
 import { createClient } from "@/utils/supabase/client";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [state, setState] = useState<WorkflowState | null>(null);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -42,6 +45,19 @@ export default function LoginPage() {
     setIsSubmitting(true);
     setError("");
     setStatus("");
+
+    if (bypassSupabaseAuth) {
+      const verifiedState: WorkflowState = {
+        ...nextState,
+        verifiedUniversityEmail: true
+      };
+
+      saveWorkflowState(verifiedState);
+      setState(verifiedState);
+      setIsSubmitting(false);
+      router.push(verifiedState.displayName ? "/questions" : "/register");
+      return;
+    }
 
     const supabase = createClient();
     const { error: signInError } = await supabase.auth.signInWithOtp({
@@ -90,7 +106,9 @@ export default function LoginPage() {
               onChange={(event) => setEmail(event.target.value)}
             />
             <p className="hint">
-              After verification, returning users continue to questions. New users finish profile setup first.
+              {bypassSupabaseAuth
+                ? "MVP auth bypass is on. Returning users continue locally; new users finish profile setup first."
+                : "After verification, returning users continue to questions. New users finish profile setup first."}
             </p>
           </div>
 
@@ -102,7 +120,13 @@ export default function LoginPage() {
               Back
             </Link>
             <button className="button" disabled={isSubmitting} type="button" onClick={sendLoginLink}>
-              {isSubmitting ? "Sending link..." : "Send login link"}
+              {isSubmitting
+                ? bypassSupabaseAuth
+                  ? "Continuing..."
+                  : "Sending link..."
+                : bypassSupabaseAuth
+                  ? "Continue"
+                  : "Send login link"}
             </button>
           </div>
         </section>
