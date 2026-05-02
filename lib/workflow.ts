@@ -12,6 +12,13 @@ export const genderOptions: { label: string; value: Gender }[] = [
 
 export const answerOptions = [1, 2, 3, 4, 5, 6, 7];
 
+export const relationshipIntentOptions: { label: string; value: RelationshipIntent }[] = [
+  { label: "Long-term", value: "long_term" },
+  { label: "Long-term, open to short-term", value: "long_term_open_to_short" },
+  { label: "Short-term, open to long-term", value: "short_term_open_to_long" },
+  { label: "Short-term", value: "short_term" }
+];
+
 export type RegistrationDraft = {
   email: string;
   verifiedUniversityEmail: boolean;
@@ -45,7 +52,7 @@ export function createDefaultWorkflowState(): WorkflowState {
     gender: "woman",
     interestedIn: ["man"],
     bio: "",
-    relationshipIntent: "serious",
+    relationshipIntent: "long_term",
     answers: createDefaultAnswers(),
     active: false,
     matchAccepted: false
@@ -65,10 +72,14 @@ export function loadWorkflowState() {
   try {
     const parsedState = JSON.parse(stored) as Partial<WorkflowState>;
     const defaults = createDefaultWorkflowState();
+    const relationshipIntent = relationshipIntentOptions.some((option) => option.value === parsedState.relationshipIntent)
+      ? parsedState.relationshipIntent
+      : defaults.relationshipIntent;
 
     return {
       ...defaults,
       ...parsedState,
+      relationshipIntent,
       answers: {
         ...defaults.answers,
         ...parsedState.answers

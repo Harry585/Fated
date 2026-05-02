@@ -1,6 +1,10 @@
 export type Gender = "woman" | "man" | "non_binary" | "other";
 
-export type RelationshipIntent = "serious" | "open_to_either" | "casual";
+export type RelationshipIntent =
+  | "long_term"
+  | "long_term_open_to_short"
+  | "short_term_open_to_long"
+  | "short_term";
 
 export type UserProfile = {
   id: string;

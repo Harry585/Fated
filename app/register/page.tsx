@@ -5,7 +5,13 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { isAnuEmail } from "@/lib/matching";
 import type { Gender, RelationshipIntent } from "@/lib/types";
-import { genderOptions, loadWorkflowState, saveWorkflowState, type WorkflowState } from "@/lib/workflow";
+import {
+  genderOptions,
+  loadWorkflowState,
+  relationshipIntentOptions,
+  saveWorkflowState,
+  type WorkflowState
+} from "@/lib/workflow";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -180,9 +186,11 @@ export default function RegisterPage() {
               value={state.relationshipIntent}
               onChange={(event) => updateState({ relationshipIntent: event.target.value as RelationshipIntent })}
             >
-              <option value="serious">Looking for something serious</option>
-              <option value="open_to_either">Open to either</option>
-              <option value="casual">Keeping it casual</option>
+              {relationshipIntentOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
           </div>
 
