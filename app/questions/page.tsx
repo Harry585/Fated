@@ -117,7 +117,7 @@ function CombinedQuestionBlock({
         <span className="eyebrow">One question set</span>
         <h2>About you and your ideal match</h2>
         <p className="hint">
-          The first row describes you. The second row describes what you would like in a compatible person.
+          Tell us about yourself, and we'll help you find your match.
         </p>
       </div>
 

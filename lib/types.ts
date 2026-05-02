@@ -20,14 +20,18 @@ export type UserProfile = {
 };
 
 export type CompatibilityAnswers = {
-  extroversion: number;
-  planning: number;
-  ambition: number;
-  nightlife: number;
-  fitness: number;
-  communication: number;
-  affection: number;
-  independence: number;
+  intellectualChallenge: number;
+  communicationFrequency: number;
+  growthMindset: number;
+  qualityTime: number;
+  appreciation: number;
+  drinkingComfort: number;
+  weedComfort: number;
+  activeLifestyle: number;
+  financialSecurity: number;
+  morningPerson: number;
+  ambitionBalance: number;
+  childrenPreference: number;
 };
 
 export type Question = {

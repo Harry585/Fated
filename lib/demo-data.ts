@@ -1,23 +1,31 @@
 import type { CompatibilityAnswers, UserProfile } from "./types";
 
 const answers = (
-  extroversion: number,
-  planning: number,
-  ambition: number,
-  nightlife: number,
-  fitness: number,
-  communication: number,
-  affection: number,
-  independence: number
+  intellectualChallenge: number,
+  communicationFrequency: number,
+  growthMindset: number,
+  qualityTime: number,
+  appreciation: number,
+  drinkingComfort: number,
+  weedComfort: number,
+  activeLifestyle: number,
+  financialSecurity: number,
+  morningPerson: number,
+  ambitionBalance: number,
+  childrenPreference: number
 ): CompatibilityAnswers => ({
-  extroversion,
-  planning,
-  ambition,
-  nightlife,
-  fitness,
-  communication,
-  affection,
-  independence
+  intellectualChallenge,
+  communicationFrequency,
+  growthMindset,
+  qualityTime,
+  appreciation,
+  drinkingComfort,
+  weedComfort,
+  activeLifestyle,
+  financialSecurity,
+  morningPerson,
+  ambitionBalance,
+  childrenPreference
 });
 
 export const demoUsers: UserProfile[] = [
@@ -34,8 +42,8 @@ export const demoUsers: UserProfile[] = [
     active: true,
     blockedUserIds: [],
     declinedUserIds: [],
-    selfAnswers: answers(4, 6, 6, 2, 5, 6, 5, 4),
-    preferenceAnswers: answers(5, 5, 6, 3, 4, 6, 5, 4)
+    selfAnswers: answers(6, 5, 6, 5, 6, 4, 2, 5, 6, 5, 3, 5),
+    preferenceAnswers: answers(6, 5, 6, 5, 6, 4, 2, 5, 6, 4, 3, 5)
   },
   {
     id: "noah",
@@ -50,8 +58,8 @@ export const demoUsers: UserProfile[] = [
     active: true,
     blockedUserIds: [],
     declinedUserIds: [],
-    selfAnswers: answers(5, 5, 6, 3, 5, 5, 5, 4),
-    preferenceAnswers: answers(4, 6, 6, 2, 5, 6, 5, 4)
+    selfAnswers: answers(6, 4, 6, 5, 5, 4, 2, 6, 5, 4, 4, 5),
+    preferenceAnswers: answers(6, 5, 6, 5, 6, 4, 2, 5, 6, 5, 3, 5)
   },
   {
     id: "ava",
@@ -66,8 +74,8 @@ export const demoUsers: UserProfile[] = [
     active: true,
     blockedUserIds: [],
     declinedUserIds: [],
-    selfAnswers: answers(6, 3, 4, 5, 2, 7, 6, 3),
-    preferenceAnswers: answers(6, 3, 4, 5, 2, 7, 6, 3)
+    selfAnswers: answers(5, 6, 5, 6, 6, 5, 4, 3, 4, 2, 2, 3),
+    preferenceAnswers: answers(5, 6, 5, 6, 6, 5, 4, 3, 4, 2, 2, 3)
   },
   {
     id: "sam",
@@ -82,7 +90,7 @@ export const demoUsers: UserProfile[] = [
     active: true,
     blockedUserIds: [],
     declinedUserIds: [],
-    selfAnswers: answers(6, 4, 4, 5, 2, 6, 6, 4),
-    preferenceAnswers: answers(6, 3, 4, 5, 2, 6, 6, 4)
+    selfAnswers: answers(5, 4, 5, 4, 5, 5, 5, 3, 5, 3, 3, 4),
+    preferenceAnswers: answers(5, 5, 5, 4, 6, 5, 5, 3, 5, 3, 3, 4)
   }
 ];

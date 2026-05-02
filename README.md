@@ -34,7 +34,7 @@ Open `http://127.0.0.1:3000`.
 
 1. Visit the landing page and click the registration call-to-action.
 2. Enter basic profile details with an `@anu.edu.au` email.
-3. Answer each compatibility topic using explicit 1-7 choices for both yourself and your ideal match.
+3. Answer Date Drop-inspired compatibility topics using explicit 1-7 choices for both yourself and your ideal match.
 4. Join the next matching round.
 5. Run the demo matching round.
 6. Review the generated match and opt in to connect.
@@ -56,6 +56,10 @@ Each user has:
 - `preferenceAnswers`: what they want in a partner.
 
 The matcher filters out ineligible users, enforces mutual gender interest, excludes blocked or declined pairs, scores each pair both ways, then greedily assigns highest-scoring pairs so each user receives at most one match per round.
+
+## Question Model
+
+The questionnaire is modelled on themes from Date Drop's MIT State of Dating report: intellectual challenge, communication frequency, growth mindset, quality time, appreciation, drinking and weed comfort, active lifestyle, money attitudes, morning/night preferences, career balance, and children preferences.
 
 ## Supabase
 

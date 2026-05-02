@@ -2,52 +2,76 @@ import type { Question } from "./types";
 
 export const compatibilityQuestions: Question[] = [
   {
-    key: "extroversion",
-    label: "How social are you?",
-    lowLabel: "Quiet nights in",
-    highLabel: "Always out with people"
+    key: "intellectualChallenge",
+    label: "I expect my partner to challenge me intellectually.",
+    lowLabel: "Strongly disagree",
+    highLabel: "Strongly agree"
   },
   {
-    key: "planning",
-    label: "How do you approach plans?",
-    lowLabel: "Spontaneous",
-    highLabel: "Organised in advance"
+    key: "communicationFrequency",
+    label: "I want to be in constant communication with my partner.",
+    lowLabel: "I need space",
+    highLabel: "Constant contact"
   },
   {
-    key: "ambition",
-    label: "How important is academic or career drive?",
-    lowLabel: "Low pressure",
-    highLabel: "Very driven"
+    key: "growthMindset",
+    label: "My partner should actively push me to become a better person.",
+    lowLabel: "Accept me as I am",
+    highLabel: "Challenge me"
   },
   {
-    key: "nightlife",
-    label: "How much do you enjoy nightlife?",
-    lowLabel: "Rarely",
-    highLabel: "Most weekends"
+    key: "qualityTime",
+    label: "I want to spend most of my free time with my partner.",
+    lowLabel: "Strongly disagree",
+    highLabel: "Strongly agree"
   },
   {
-    key: "fitness",
-    label: "How central is fitness or sport?",
-    lowLabel: "Not central",
-    highLabel: "Very central"
+    key: "appreciation",
+    label: "I regularly express appreciation for others' efforts.",
+    lowLabel: "Strongly disagree",
+    highLabel: "Strongly agree"
   },
   {
-    key: "communication",
-    label: "How much communication do you prefer?",
-    lowLabel: "Low maintenance",
-    highLabel: "Frequent check-ins"
+    key: "drinkingComfort",
+    label: "I am comfortable with my partner drinking.",
+    lowLabel: "Nope",
+    highLabel: "Bottoms up"
   },
   {
-    key: "affection",
-    label: "How openly affectionate are you?",
-    lowLabel: "Reserved",
-    highLabel: "Very affectionate"
+    key: "weedComfort",
+    label: "I am comfortable with my partner smoking weed.",
+    lowLabel: "Strongly disagree",
+    highLabel: "Strongly agree"
   },
   {
-    key: "independence",
-    label: "How much independence do you like in a relationship?",
-    lowLabel: "Do most things together",
-    highLabel: "Lots of personal space"
+    key: "activeLifestyle",
+    label: "I lead a very active lifestyle.",
+    lowLabel: "Strongly disagree",
+    highLabel: "Strongly agree"
+  },
+  {
+    key: "financialSecurity",
+    label: "I prefer saving money for long-term security over spending for current enjoyment.",
+    lowLabel: "YOLO",
+    highLabel: "Nest egg"
+  },
+  {
+    key: "morningPerson",
+    label: "I am a morning person.",
+    lowLabel: "Night owl",
+    highLabel: "Morning person"
+  },
+  {
+    key: "ambitionBalance",
+    label: "Career advancement should take priority over work-life balance.",
+    lowLabel: "Work to live",
+    highLabel: "Live to work"
+  },
+  {
+    key: "childrenPreference",
+    label: "For me, a fulfilling life includes having children.",
+    lowLabel: "Hard pass",
+    highLabel: "It's my dream"
   }
 ];
 

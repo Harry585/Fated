@@ -65,9 +65,20 @@ export function loadWorkflowState() {
   }
 
   try {
+    const parsedState = JSON.parse(stored) as Partial<WorkflowState>;
+    const defaults = createDefaultWorkflowState();
+
     return {
-      ...createDefaultWorkflowState(),
-      ...JSON.parse(stored)
+      ...defaults,
+      ...parsedState,
+      selfAnswers: {
+        ...defaults.selfAnswers,
+        ...parsedState.selfAnswers
+      },
+      preferenceAnswers: {
+        ...defaults.preferenceAnswers,
+        ...parsedState.preferenceAnswers
+      }
     } as WorkflowState;
   } catch {
     return createDefaultWorkflowState();
