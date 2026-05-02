@@ -1,7 +1,12 @@
 create extension if not exists "pgcrypto";
 
-create type public.gender as enum ('woman', 'man', 'non_binary', 'other');
-create type public.relationship_intent as enum ('serious', 'open_to_either', 'casual');
+create type public.gender as enum ('woman', 'man', 'non_binary');
+create type public.relationship_intent as enum (
+  'long_term',
+  'long_term_open_to_short',
+  'short_term_open_to_long',
+  'short_term'
+);
 create type public.match_status as enum ('pending', 'accepted', 'declined', 'reported');
 create type public.round_status as enum ('scheduled', 'running', 'completed', 'failed');
 
@@ -13,7 +18,7 @@ create table public.profiles (
   gender public.gender not null,
   interested_in public.gender[] not null check (array_length(interested_in, 1) > 0),
   bio text not null default '',
-  relationship_intent public.relationship_intent not null default 'open_to_either',
+  relationship_intent public.relationship_intent not null default 'long_term',
   university text not null default 'ANU',
   active boolean not null default false,
   created_at timestamptz not null default now(),
@@ -23,8 +28,7 @@ create table public.profiles (
 
 create table public.question_answers (
   user_id uuid primary key references public.profiles(id) on delete cascade,
-  self_answers jsonb not null,
-  preference_answers jsonb not null,
+  answers jsonb not null,
   updated_at timestamptz not null default now()
 );
 

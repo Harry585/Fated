@@ -1,4 +1,4 @@
-export type Gender = "woman" | "man" | "non_binary" | "other";
+export type Gender = "woman" | "man" | "non_binary";
 
 export type RelationshipIntent =
   | "long_term"

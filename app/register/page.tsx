@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { isAnuEmail } from "@/lib/matching";
 import type { Gender, RelationshipIntent } from "@/lib/types";
@@ -12,11 +11,13 @@ import {
   saveWorkflowState,
   type WorkflowState
 } from "@/lib/workflow";
+import { createClient } from "@/utils/supabase/client";
 
 export default function RegisterPage() {
-  const router = useRouter();
   const [state, setState] = useState<WorkflowState | null>(null);
   const [error, setError] = useState("");
+  const [status, setStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     setState(loadWorkflowState());
@@ -44,7 +45,7 @@ export default function RegisterPage() {
     });
   }
 
-  function continueToQuestions() {
+  async function continueToQuestions() {
     if (!state) return;
 
     const currentState = state;
@@ -75,13 +76,33 @@ export default function RegisterPage() {
       ...currentState,
       email: trimmedEmail,
       displayName: trimmedName,
-      verifiedUniversityEmail: true,
+      verifiedUniversityEmail: false,
       active: false,
       matchAccepted: false
     };
 
     saveWorkflowState(nextState);
-    router.push("/questions");
+    setIsSubmitting(true);
+    setError("");
+    setStatus("");
+
+    const supabase = createClient();
+    const { error: signInError } = await supabase.auth.signInWithOtp({
+      email: trimmedEmail,
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/callback?next=/auth/confirmed`
+      }
+    });
+
+    setIsSubmitting(false);
+
+    if (signInError) {
+      setError(signInError.message);
+      return;
+    }
+
+    setState(nextState);
+    setStatus("Check your ANU email for a verification link to continue.");
   }
 
   return (
@@ -133,7 +154,7 @@ export default function RegisterPage() {
                 })
               }
             />
-            <p className="hint">For this MVP demo, verification is simulated by checking the email domain.</p>
+            <p className="hint">We&apos;ll send a Supabase verification link to your ANU email.</p>
           </div>
 
           <div className="two-column">
@@ -205,13 +226,14 @@ export default function RegisterPage() {
           </div>
 
           {error ? <p className="error">{error}</p> : null}
+          {status ? <p className="success">{status}</p> : null}
 
           <div className="form-actions">
             <Link className="button secondary" href="/">
               Back
             </Link>
-            <button className="button" type="button" onClick={continueToQuestions}>
-              Continue to questions
+            <button className="button" disabled={isSubmitting} type="button" onClick={continueToQuestions}>
+              {isSubmitting ? "Sending link..." : "Send verification link"}
             </button>
           </div>
         </section>

@@ -6,8 +6,7 @@ export const workflowStorageKey = "anu-match-workflow";
 export const genderOptions: { label: string; value: Gender }[] = [
   { label: "Woman", value: "woman" },
   { label: "Man", value: "man" },
-  { label: "Non-binary", value: "non_binary" },
-  { label: "Other", value: "other" }
+  { label: "Non-binary", value: "non_binary" }
 ];
 
 export const answerOptions = [1, 2, 3, 4, 5, 6, 7];
@@ -72,6 +71,10 @@ export function loadWorkflowState() {
   try {
     const parsedState = JSON.parse(stored) as Partial<WorkflowState>;
     const defaults = createDefaultWorkflowState();
+    const gender = genderOptions.some((option) => option.value === parsedState.gender) ? parsedState.gender : defaults.gender;
+    const interestedIn = parsedState.interestedIn?.filter((genderValue) => {
+      return genderOptions.some((option) => option.value === genderValue);
+    });
     const relationshipIntent = relationshipIntentOptions.some((option) => option.value === parsedState.relationshipIntent)
       ? parsedState.relationshipIntent
       : defaults.relationshipIntent;
@@ -79,6 +82,8 @@ export function loadWorkflowState() {
     return {
       ...defaults,
       ...parsedState,
+      gender,
+      interestedIn: interestedIn?.length ? interestedIn : defaults.interestedIn,
       relationshipIntent,
       answers: {
         ...defaults.answers,
