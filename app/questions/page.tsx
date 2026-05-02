@@ -56,7 +56,7 @@ export default function QuestionsPage() {
     <main className="page-shell">
       <nav className="top-nav">
         <Link className="brand" href="/">
-          ANU Match
+          Fated
         </Link>
         <span className="progress-text">Step 2 of 3</span>
       </nav>

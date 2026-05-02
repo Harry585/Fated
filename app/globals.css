@@ -95,6 +95,17 @@ h3 {
   padding: 28px 0 64px;
 }
 
+.landing-shell {
+  width: 100%;
+  padding-top: 0;
+}
+
+.landing-content {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding-bottom: 64px;
+}
+
 .top-nav {
   display: flex;
   align-items: center;
@@ -120,9 +131,7 @@ h3 {
   width: 34px;
   height: 34px;
   border-radius: 12px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.55), transparent),
-    var(--accent);
+  background: white url("/favicon-32x32.png") center / 24px 24px no-repeat;
   box-shadow: 0 12px 24px rgba(201, 120, 40, 0.32);
 }
 
@@ -157,6 +166,70 @@ h3 {
 }
 
 /* ── Hero ── */
+
+.landing-hero {
+  position: relative;
+  display: grid;
+  min-height: min(860px, 100vh);
+  align-items: end;
+  overflow: hidden;
+  padding: 28px max(24px, calc((100vw - 1180px) / 2)) clamp(56px, 10vw, 110px);
+  background-image:
+    linear-gradient(90deg, rgba(5, 12, 28, 0.76) 0%, rgba(5, 12, 28, 0.42) 42%, rgba(5, 12, 28, 0.08) 100%),
+    linear-gradient(0deg, rgba(5, 12, 28, 0.58) 0%, rgba(5, 12, 28, 0) 45%),
+    url("/hero-image.jpeg");
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+
+.landing-nav {
+  position: absolute;
+  top: 28px;
+  right: max(24px, calc((100vw - 1180px) / 2));
+  left: max(24px, calc((100vw - 1180px) / 2));
+  z-index: 2;
+}
+
+.landing-nav .brand,
+.landing-nav .nav-link {
+  color: white;
+  opacity: 1;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+
+.landing-nav .brand::before {
+  display: none;
+}
+
+.landing-hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  padding-top: 120px;
+  text-shadow: 0 3px 28px rgba(0, 0, 0, 0.42);
+}
+
+.landing-hero-copy h1 {
+  font-size: clamp(3.2rem, 9vw, 7.4rem);
+}
+
+.landing-hero-copy .eyebrow {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff4d6;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+.landing-hero-copy .lede {
+  max-width: 680px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(1rem, 2vw, 1.24rem);
+}
+
+.landing-secondary {
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--foreground);
+}
 
 .hero {
   display: grid;

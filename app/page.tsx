@@ -2,106 +2,79 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="page-shell">
-      <nav className="top-nav">
-        <Link className="brand" href="/">
-          ANU Match
-        </Link>
-        <div className="nav-links">
-          <a className="nav-link" href="#how-it-works">
-            How it works
-          </a>
-          <Link className="nav-link" href="/register">
-            Register
+    <main className="page-shell landing-shell">
+      <section className="landing-hero">
+        <nav className="top-nav landing-nav">
+          <Link className="brand" href="/">
+            Fated
           </Link>
-        </div>
-      </nav>
+          <div className="nav-links">
+            <a className="nav-link" href="#how-it-works">
+              How it works
+            </a>
+            <Link className="nav-link" href="/login">
+              Login
+            </Link>
+            <Link className="nav-link" href="/register">
+              Register
+            </Link>
+          </div>
+        </nav>
 
-      <section className="hero hero-large">
-        <div className="hero-copy hero-panel">
-          <span className="eyebrow">🍂 Dating without the swipe fatigue</span>
-          <h1>Find someone worth watching the sunset with.</h1>
+        <div className="landing-hero-copy">
+          <h1>date without swiping</h1>
           <p className="lede">
-            ANU Match is for students who want something real — no judging strangers on a swipe card,
-            no overthinking every message, no evenings lost to an endless scroll.
+            Fated helps ANU students make one thoughtful introduction at a time, using values,
+            lifestyle, and relationship intent instead of an endless queue of profiles.
           </p>
           <div className="hero-actions">
             <Link className="button button-large" href="/register">
-              Register for the next round
+              Register
             </Link>
-            <a className="button secondary" href="#how-it-works">
-              How it works
+            <Link className="button secondary landing-secondary" href="/login">
+              Login
+            </Link>
+            <a className="button secondary landing-secondary" href="#how-it-works">
+              See how it works
             </a>
-          </div>
-          <div className="stat-row">
-            <div>
-              <strong>🍃 No public judging</strong>
-              <span>Your profile is not a swipe card</span>
-            </div>
-            <div>
-              <strong>🌅 Less emotional labour</strong>
-              <span>No endless texting strategy</span>
-            </div>
-            <div>
-              <strong>🌏 Authentic connection</strong>
-              <span>Matched on values and fit</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="phone-card">
-          <div className="phone-header">
-            <span />
-            <span />
-          </div>
-          <div className="match-preview">
-            <span className="eyebrow">Friday match</span>
-            <h2>One thoughtful intro</h2>
-            <p>No public likes, no swipe queue, no guessing whether to send the perfect message.</p>
-            <div className="avatar-pair">
-              <div>M</div>
-              <div>N</div>
-            </div>
-          </div>
-          <div className="mini-feed">
-            <div />
-            <div />
-            <div />
           </div>
         </div>
       </section>
 
+      <div className="landing-content">
       <section className="section" id="how-it-works">
         <div className="section-heading narrow">
-          <span className="eyebrow">🌿 Simple by design</span>
+          <span className="eyebrow">How it works</span>
           <h2>Three steps to one meaningful match.</h2>
-          <p className="hint">No swiping. No cold openers. No performance.</p>
+          <p className="hint">
+            Sign up with an ANU email, answer a short compatibility set, then join the next scheduled round.
+          </p>
         </div>
         <div className="step-row">
           <div className="step-card">
-            <span className="step-emoji">📋</span>
+            <span className="step-emoji">1</span>
             <div>
-              <h3>Register</h3>
+              <h3>Verify</h3>
               <p className="small">
-                Verify your ANU email and share a few basics. No profile photo, no public card.
+                Confirm your ANU email with Supabase Auth and share the basic details needed for eligibility.
               </p>
             </div>
           </div>
           <div className="step-card">
-            <span className="step-emoji">💬</span>
+            <span className="step-emoji">2</span>
             <div>
               <h3>Answer questions</h3>
               <p className="small">
-                A short set of values and lifestyle questions gives us the matching signal we need.
+                Choose where you sit on values, lifestyle, habits, and relationship intent.
               </p>
             </div>
           </div>
           <div className="step-card">
-            <span className="step-emoji">💌</span>
+            <span className="step-emoji">3</span>
             <div>
               <h3>Get your match</h3>
               <p className="small">
-                Every Friday, one thoughtful introduction arrives. You both get the same message.
+                Fated scores compatible pairs and reveals one introduction when the round runs.
               </p>
             </div>
           </div>
@@ -110,7 +83,7 @@ export default function Home() {
 
       <section className="section">
         <div className="section-heading narrow">
-          <span className="eyebrow">🍁 Sample match</span>
+          <span className="eyebrow">Sample match</span>
           <h2>This is what a Friday match looks like.</h2>
           <p className="hint">Real names replaced. Everything else is exactly how it works.</p>
         </div>
@@ -153,33 +126,33 @@ export default function Home() {
 
       <section className="section">
         <div className="section-heading">
-          <span className="eyebrow">Why it is different</span>
-          <h2>Built around student wellbeing, not attention loops.</h2>
+          <span className="eyebrow">Inside a round</span>
+          <h2>The app filters, scores, and pairs the pool.</h2>
           <p className="hint">
-            Traditional dating apps often turn dating into evaluation, performance, and constant
-            notifications. This makes the process slower, safer, and more intentional.
+            Each round starts with eligibility checks, then ranks compatible pairs using weighted answers
+            and relationship intent. The highest scoring non-overlapping pairs are revealed.
           </p>
         </div>
         <div className="feature-grid">
           <Feature
             number="1"
-            title="No anonymous judgement"
-            text="Students are not shown as endless cards for strangers to approve or reject."
+            title="Eligibility"
+            text="Only active, verified ANU students with mutual gender interest enter the candidate pool."
           />
           <Feature
             number="2"
-            title="No swipe exhaustion"
-            text="A scheduled round replaces the habit of checking, comparing, and scrolling."
+            title="Compatibility"
+            text="Question answers are compared with weighted Euclidean distance, so important mismatches count more."
           />
           <Feature
             number="3"
-            title="Less texting pressure"
-            text="The app creates a meaningful intro instead of pushing people into performative small talk."
+            title="Intent"
+            text="Relationship intent is part of the score, with pure long-term and pure short-term treated as incompatible."
           />
           <Feature
             number="4"
-            title="More authentic fit"
-            text="Matches are based on values, lifestyle, and mutual interest rather than snap decisions."
+            title="Reveal"
+            text="The round chooses the strongest available pairs so each student receives at most one match."
           />
         </div>
       </section>
@@ -193,6 +166,7 @@ export default function Home() {
           Start registration
         </Link>
       </section>
+      </div>
     </main>
   );
 }

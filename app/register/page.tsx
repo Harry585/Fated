@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { isAnuEmail } from "@/lib/matching";
 import type { Gender, RelationshipIntent } from "@/lib/types";
@@ -14,6 +15,7 @@ import {
 import { createClient } from "@/utils/supabase/client";
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [state, setState] = useState<WorkflowState | null>(null);
   const [error, setError] = useState("");
   const [status, setStatus] = useState("");
@@ -87,6 +89,24 @@ export default function RegisterPage() {
     setStatus("");
 
     const supabase = createClient();
+    const {
+      data: { user }
+    } = await supabase.auth.getUser();
+    const authenticatedEmail = user?.email?.trim() ?? "";
+
+    if (isAnuEmail(authenticatedEmail) && authenticatedEmail.toLowerCase() === trimmedEmail.toLowerCase()) {
+      const verifiedState: WorkflowState = {
+        ...nextState,
+        verifiedUniversityEmail: true
+      };
+
+      saveWorkflowState(verifiedState);
+      setState(verifiedState);
+      setIsSubmitting(false);
+      router.push("/questions");
+      return;
+    }
+
     const { error: signInError } = await supabase.auth.signInWithOtp({
       email: trimmedEmail,
       options: {
@@ -109,7 +129,7 @@ export default function RegisterPage() {
     <main className="page-shell">
       <nav className="top-nav">
         <Link className="brand" href="/">
-          ANU Match
+          Fated
         </Link>
         <span className="progress-text">Step 1 of 3</span>
       </nav>
@@ -231,6 +251,9 @@ export default function RegisterPage() {
           <div className="form-actions">
             <Link className="button secondary" href="/">
               Back
+            </Link>
+            <Link className="button secondary" href="/login">
+              Login
             </Link>
             <button className="button" disabled={isSubmitting} type="button" onClick={continueToQuestions}>
               {isSubmitting ? "Sending link..." : "Send verification link"}

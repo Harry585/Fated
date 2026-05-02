@@ -1,5 +1,5 @@
 import { compatibilityQuestions, defaultAnswerValue } from "./questions";
-import type { CompatibilityAnswers, Gender, RelationshipIntent, UserProfile,GroupSize,HangoutVibe } from "./types";
+import type { CompatibilityAnswers, Gender, GroupSize, HangoutVibe, RelationshipIntent, UserProfile } from "./types";
 
 export const workflowStorageKey = "anu-match-workflow";
 
@@ -19,16 +19,16 @@ export const relationshipIntentOptions: { label: string; value: RelationshipInte
 ];
 
 export const groupSizeOptions = [
-  { value: '1-on-1' as const, label: '1-on-1' },
-  { value: 'small group' as const, label: 'Small group' },
-  { value: 'either' as const, label: 'Either' },
+  { value: "1-on-1" as const, label: "1-on-1" },
+  { value: "small group" as const, label: "Small group" },
+  { value: "either" as const, label: "Either" }
 ];
 
 export const hangoutVibeOptions = [
-  { value: 'chill' as const, label: 'Chill' },
-  { value: 'active' as const, label: 'Active' },
-  { value: 'intellectual' as const, label: 'Intellectual' },
-  { value: 'mixed' as const, label: 'Mixed' },
+  { value: "chill" as const, label: "Chill" },
+  { value: "active" as const, label: "Active" },
+  { value: "intellectual" as const, label: "Intellectual" },
+  { value: "mixed" as const, label: "Mixed" }
 ];
 
 export type RegistrationDraft = {

@@ -36,7 +36,7 @@ export default function AuthConfirmedPage() {
       };
 
       saveWorkflowState(nextState);
-      router.replace("/questions");
+      router.replace(nextState.displayName ? "/questions" : "/register");
     }
 
     void confirmAuth();
@@ -46,7 +46,7 @@ export default function AuthConfirmedPage() {
     <main className="page-shell">
       <nav className="top-nav">
         <Link className="brand" href="/">
-          ANU Match
+          Fated
         </Link>
       </nav>
 

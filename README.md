@@ -1,4 +1,4 @@
-# ANU Match MVP
+# Fated
 
 A hackathon MVP for a calmer ANU dating app. Students verify an `@anu.edu.au` email, answer structured compatibility questions, and receive one scheduled match instead of swiping.
 
@@ -11,7 +11,7 @@ Traditional dating apps can feel especially draining for university students:
 - Texting often turns into overthinking, performance, and strategy.
 - Quick visual judgement can crowd out more authentic connection.
 
-ANU Match reframes dating as a scheduled, university-verified introduction. The product asks what people value, matches on compatibility, and gives users control over whether contact is revealed.
+Fated reframes dating as a scheduled, university-verified introduction. The product asks what people value, matches on compatibility, and gives users control over whether contact is revealed.
 
 ## Stack
 
@@ -34,7 +34,7 @@ Open `http://127.0.0.1:3000`.
 
 1. Visit the landing page and click the registration call-to-action.
 2. Enter basic profile details with an `@anu.edu.au` email.
-3. Answer Date Drop-inspired compatibility topics using explicit 1-7 choices for both yourself and your ideal match.
+3. Answer compatibility topics using explicit 1-7 choices.
 4. Join the next matching round.
 5. Run the demo matching round.
 6. Review the generated match and opt in to connect.
@@ -45,17 +45,12 @@ The current UI uses browser local storage plus seeded ANU users for the hackatho
 
 - `/`: landing page.
 - `/register`: basic registration details.
-- `/questions`: one compatibility question series with self and ideal-match answers.
+- `/questions`: one compatibility question series.
 - `/match`: demo round and match reveal.
 
 ## Matching Algorithm
 
-Each user has:
-
-- `selfAnswers`: what they are like.
-- `preferenceAnswers`: what they want in a partner.
-
-The matcher filters out ineligible users, enforces mutual gender interest, excludes blocked or declined pairs, scores each pair both ways, then greedily assigns highest-scoring pairs so each user receives at most one match per round.
+Each user has one answer vector. The matcher filters out ineligible users, enforces mutual gender and relationship intent rules, excludes blocked or declined pairs, scores each pair with weighted Euclidean distance, then greedily assigns highest-scoring pairs so each user receives at most one match per round.
 
 ## Question Model
 
@@ -69,7 +64,7 @@ Set these environment variables before wiring live auth:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 RESEND_API_KEY=
 ```
