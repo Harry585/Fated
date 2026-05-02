@@ -63,11 +63,10 @@ export default function MatchPage() {
           <span className="eyebrow">You are in</span>
           <h1>Welcome to the next round, {state.displayName}.</h1>
           <p className="lede">
-            In production this page would wait for the weekly scheduler. For the hackathon demo, trigger the
-            round manually.
+            Each week we run a fresh round and reveal one introduction. Try it now to see your match.
           </p>
           <button className="button button-large" type="button" onClick={() => setHasRunRound(true)}>
-            Run this week&apos;s match
+            Run this week&rsquo;s match
           </button>
         </aside>
 
@@ -77,8 +76,7 @@ export default function MatchPage() {
             <div className="empty-state">
               <h2>Your match is ready to generate.</h2>
               <p className="hint">
-                The demo pool includes seeded ANU students so you can see the full workflow without waiting
-                for a real scheduled job.
+                Tap the button to see who we think you&rsquo;d hit it off with this week.
               </p>
             </div>
           ) : matchedPerson && currentMatch ? (
@@ -111,7 +109,7 @@ export default function MatchPage() {
               </div>
               {state.matchAccepted ? (
                 <p className="success">
-                  Opt-in recorded. Real contact details would unlock only after both students accept.
+                  Opt-in recorded. Contact details unlock once both of you say yes.
                 </p>
               ) : null}
             </div>
@@ -124,21 +122,6 @@ export default function MatchPage() {
         </section>
       </section>
 
-      <section className="section">
-        <div className="section-heading">
-          <span className="eyebrow">Demo pool</span>
-          <h2>Seeded ANU students</h2>
-        </div>
-        <div className="profile-grid">
-          {demoUsers.map((user) => (
-            <div className="profile-mini" key={user.id}>
-              <strong>{user.displayName}</strong>
-              <span>{user.email}</span>
-              <p className="small">{user.bio}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </main>
   );
 }

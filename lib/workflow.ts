@@ -1,5 +1,5 @@
 import { compatibilityQuestions, defaultAnswerValue } from "./questions";
-import type { CompatibilityAnswers, Gender, GroupSize, HangoutVibe, RelationshipIntent, UserProfile } from "./types";
+import type { CompatibilityAnswers, Gender, RelationshipIntent, UserProfile } from "./types";
 
 export const workflowStorageKey = "anu-match-workflow";
 
@@ -18,19 +18,6 @@ export const relationshipIntentOptions: { label: string; value: RelationshipInte
   { label: "Short-term", value: "short_term" }
 ];
 
-export const groupSizeOptions = [
-  { value: "1-on-1" as const, label: "1-on-1" },
-  { value: "small group" as const, label: "Small group" },
-  { value: "either" as const, label: "Either" }
-];
-
-export const hangoutVibeOptions = [
-  { value: "chill" as const, label: "Chill" },
-  { value: "active" as const, label: "Active" },
-  { value: "intellectual" as const, label: "Intellectual" },
-  { value: "mixed" as const, label: "Mixed" }
-];
-
 export type RegistrationDraft = {
   email: string;
   verifiedUniversityEmail: boolean;
@@ -46,10 +33,6 @@ export type WorkflowState = RegistrationDraft & {
   answers: CompatibilityAnswers;
   active: boolean;
   matchAccepted: boolean;
-  lookingForDating: boolean;
-  lookingForFriendship: boolean;
-  groupSize: GroupSize;
-  hangoutVibe: HangoutVibe;
 };
 
 export function createDefaultAnswers(): CompatibilityAnswers {
@@ -71,11 +54,7 @@ export function createDefaultWorkflowState(): WorkflowState {
     relationshipIntent: "long_term",
     answers: createDefaultAnswers(),
     active: false,
-    matchAccepted: false,
-    lookingForDating: true,
-    lookingForFriendship: false,
-    groupSize: "either",
-    hangoutVibe: "mixed"
+    matchAccepted: false
   };
 }
 
